@@ -1,9 +1,26 @@
 <mvc:View controllerName="aktive.invoice.controller.MainView"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content>
-         <Text text="Akktive ingresando"></Text>
+         <!-- <Text text="Akktive ingresando"></Text>-->
+           <Panel id="PanelShip" headerText="{i18n>selectionPantalla}">
+              <Label id="LabelShipName" labelFor="shipName" text="Ship Name" class="sapUiSmallMargin"/>
+              <Input id="shipName" class="sapUiSmallMarginEnd" width="200px" />
+              <Label id="LabelCountry"  text="{i18n>country}" class="sapUiSmallMargin"/>
+              <Select id="slCountry" selectedKey="{selectionScreen>/CountryKey}"
+                                   forceSelection="false"
+                                   items="{selectionScreen>/Countries}"
+                                   visible="true">
+                                   <items>
+                                    
+                                    <core:Item id="Key" key="{selectionScreen>key}"
+                                              text="{selectionScreen>text}"/>
+                                   </items>
+              </Select>
+           </Panel>
+
         </content> 
     </Page>
 </mvc:View>
