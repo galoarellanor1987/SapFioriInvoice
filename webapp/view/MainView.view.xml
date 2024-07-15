@@ -7,20 +7,53 @@
          <!-- <Text text="Akktive ingresando"></Text>-->
            <Panel id="PanelShip" headerText="{i18n>selectionPantalla}">
               <Label id="LabelShipName" labelFor="shipName" text="Ship Name" class="sapUiSmallMargin"/>
-              <Input id="shipName" class="sapUiSmallMarginEnd" width="200px" />
+              <Input id="ShipName" value="{selectionScreen>/ShipName}" class="sapUiSmallMarginEnd" width="200px" />
               <Label id="LabelCountry"  text="{i18n>country}" class="sapUiSmallMargin"/>
-              <Select id="slCountry" selectedKey="{selectionScreen>/CountryKey}"
+              <Select id="Country" selectedKey="{selectionScreen>/CountryKey}"
                                    forceSelection="false"
                                    items="{selectionScreen>/Countries}"
                                    visible="true">
                                    <items>
                                     
-                                    <core:Item id="Key" key="{selectionScreen>key}"
-                                              text="{selectionScreen>text}"/>
+                                    <core:Item id="Key" key="{selectionScreen>text}" 
+                                              text="{selectionScreen>text}"/> <!--{selectionScreen>key}"-->
                                    </items>
               </Select>
+              <Button id="btnFilter" 
+                      text="{i18n>btnFilter}"
+                      icon="sap-icon://filter"
+                      press="onFilter"
+                      class="SapUiSmallMarginEnd"
+               />
+               <Button id="btnClearFilter" 
+                      text="{i18n>btnClearFilter}"
+                      icon="sap-icon://clear-filter"
+                      press="onClearFilter"
+                      class="SapUiSmallMarginEnd"
+               />       
            </Panel>
-
+          <Panel id="InvoiceListPanel">
+             <List id="InvoiceListId" headerText="{i18n>InvoiceList}"
+                class="sapUiResponsiveMargin"
+                width="auto"
+                items="{/Invoices}">
+              <items>
+               <ObjectListItem id="ObjectIdListem" 
+                 title="{ShipName} - {Country}"
+                 number="{parts : [ {path: 'ExtendedPrice'},
+                                    {path: 'selectionScreen>/Currency'}
+                                  ],
+                        type : 'sap.ui.model.type.Currency'
+                       
+                         }"
+                numberUnit="{'selectionScreen>/Currency'}"
+                numberState= "{= ${ExtendedPrice} > 100 ? 'Success' : 'Warning' }"
+                > <!--{= ${ExtendedPrice} < 65 ? 'Error' : 'Warning'}-->
+                </ObjectListItem>
+               </items>
+              </List>
+          </Panel>
+          
         </content> 
     </Page>
 </mvc:View>

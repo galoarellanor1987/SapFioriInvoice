@@ -5,7 +5,7 @@
   [
     {
     "key":"GM",
-    "text":"Alemania"
+    "text":"Germany"
     },
     {
         "key":"UK",
@@ -14,7 +14,15 @@
     {
         "key":"EC",
         "text":"Ecuador"
-    }
+    },
+    {
+        "key":"MX",
+        "text":"Mexico"
+    },
+    {
+      "key":"",
+      "text":"--"
+      }
 
   ],
  "Currency": "USD"
